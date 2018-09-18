@@ -1,4 +1,4 @@
-package app.gui;
+package Grafica.app.gui;
 
 import java.awt.Graphics;
 
@@ -9,13 +9,10 @@ import java.awt.Graphics;
 public class Principal extends javax.swing.JFrame {
     private int mouseX;
     private int mouseY;
+    private int xAnterior, yAnterior;
     private int xInicio, yInicio, xFin, yFin;
     private boolean inicio = true;
-    /*
-        0 - recta
-        1 - rectangulo
-        2 - ovalo
-    */
+    // 0 - recta, 1 - rectangulo, 2 - ovalo
     private int mode;
     
     /**
@@ -46,6 +43,7 @@ public class Principal extends javax.swing.JFrame {
         btnLine = new javax.swing.JButton();
         btnOval = new javax.swing.JButton();
         btnRect = new javax.swing.JButton();
+        btnLiga = new javax.swing.JButton();
         panelCentro = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -141,6 +139,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnLiga.setText("Efecto liga");
+        btnLiga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnLigaMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelEsteLayout = new javax.swing.GroupLayout(panelEste);
         panelEste.setLayout(panelEsteLayout);
         panelEsteLayout.setHorizontalGroup(
@@ -152,7 +157,8 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnLine))
                     .addComponent(btnRect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnOval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLiga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelEsteLayout.setVerticalGroup(
@@ -164,7 +170,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnRect)
                 .addGap(18, 18, 18)
                 .addComponent(btnOval)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLiga)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelEste, java.awt.BorderLayout.LINE_START);
@@ -209,11 +217,19 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelCentroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCentroMouseMoved
+        Graphics g = this.panelCentro.getGraphics();
         mouseX = evt.getX();
         mouseY = evt.getY();
         
         this.txtCursorx.setText(Integer.toString(mouseX));
         this.txtCursory.setText(Integer.toString(mouseY));
+        
+        if (mode == 3 && inicio) {
+            g.clearRect(xInicio, yInicio, xAnterior, yAnterior);
+            xAnterior = mouseX;
+            yAnterior = mouseY;
+            g.drawLine(xInicio, yInicio, xAnterior, yAnterior);
+        }
     }//GEN-LAST:event_panelCentroMouseMoved
 
     private void panelCentroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCentroMouseClicked
@@ -234,6 +250,11 @@ public class Principal extends javax.swing.JFrame {
     private void btnCleanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCleanMousePressed
         panelCentro.removeAll();;
         panelCentro.repaint();
+        inicio = true;
+        xInicio = evt.getX();
+        xInicio = evt.getX();
+        xFin = evt.getX();
+        yFin = evt.getY();
     }//GEN-LAST:event_btnCleanMousePressed
 
     private void btnLineMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLineMousePressed
@@ -248,6 +269,10 @@ public class Principal extends javax.swing.JFrame {
         mode = 2;
     }//GEN-LAST:event_btnOvalMousePressed
 
+    private void btnLigaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLigaMousePressed
+        mode = 3;
+    }//GEN-LAST:event_btnLigaMousePressed
+
     public void dibujaFigura(Graphics g) {
         int ancho = Math.abs(xFin - xInicio);
         int alto = Math.abs(yFin - yFin);
@@ -261,6 +286,9 @@ public class Principal extends javax.swing.JFrame {
                 break;
             case 2:
                 g.drawOval(xInicio, yInicio, ancho, alto);
+                break;
+            case 3:
+                g.drawLine(xInicio, yInicio, xFin, yFin);
                 break;
             default:
                 break;
@@ -304,6 +332,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClean;
+    private javax.swing.JButton btnLiga;
     private javax.swing.JButton btnLine;
     private javax.swing.JButton btnOval;
     private javax.swing.JButton btnRect;

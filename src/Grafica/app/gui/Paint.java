@@ -1,4 +1,4 @@
-package app.gui;
+package Grafica.app.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import controller.ButtonListener;
-import controller.TextListener;
+import Grafica.controller.ButtonListener;
+import Grafica.controller.TextListener;
 
 public class Paint extends JFrame {
     public JButton btnLine, btnRect, btnOval, btnClear;

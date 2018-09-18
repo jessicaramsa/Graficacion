@@ -1,6 +1,6 @@
-package controller;
+package Grafica.controller;
 
-import app.gui.Paint;
+import Grafica.app.gui.Paint;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
