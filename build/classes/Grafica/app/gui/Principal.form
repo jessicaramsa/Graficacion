@@ -176,6 +176,7 @@
                       </Group>
                       <Component id="btnRect" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnOval" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnLiga" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -190,7 +191,9 @@
                   <Component id="btnRect" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnOval" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="76" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnLiga" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -218,6 +221,14 @@
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRectMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLiga">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Efecto liga"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLigaMousePressed"/>
           </Events>
         </Component>
       </SubComponents>

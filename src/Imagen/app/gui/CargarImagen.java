@@ -1,4 +1,4 @@
-package CargarImagen.app.gui;
+package Imagen.app.gui;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
