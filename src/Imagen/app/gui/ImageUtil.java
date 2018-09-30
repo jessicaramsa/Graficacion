@@ -3,12 +3,14 @@ package Imagen.app.gui;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class ImageUtil {
     BufferedImage img;
     int[][] array;
+    int alto, ancho;
 
     public ImageUtil(String src) {
         img = loadImage(src);
@@ -82,8 +84,8 @@ public class ImageUtil {
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(src));
-        } catch (Exception e) {
-            System.err.println("Error al cargar. " + e.toString);
+        } catch (IOException e) {
+            System.err.println("Error al cargar. " + e.toString());
         }
         return img;
     }
@@ -106,7 +108,7 @@ public class ImageUtil {
         int alto = array.length;
         int ancho = array[0].length;
 
-        BufferedImage img = new BufferedImage();
+        BufferedImage img = new BufferedImage(alto, ancho, 0);
 
         for(int i = 0; i < alto; i++) {
             for(int j = 0; j < ancho; j++) {
@@ -120,7 +122,7 @@ public class ImageUtil {
     public static void saveImage(BufferedImage img, String tipo, String file) {
         try {
             ImageIO.write(img, tipo, new File(file));
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Error al guardar. " + e.toString());
         }
     }
