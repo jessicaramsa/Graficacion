@@ -1,4 +1,4 @@
-package CurvaBezier.model;
+package CurvaBezier.app.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ public class Bezier {
     public ArrayList<Point> bezier(ArrayList<Point> p, float t) {
         float x = 0.0f, y = 0.0f;
         int grade = p.size();
-        ArrayList<Point> b;
+        ArrayList<Point> b = new ArrayList();
 
         for (int i = 0; i <= 1.0; i += t) {
             x += p.get(0).x * Math.pow(1 - i, grade);
@@ -18,8 +18,10 @@ public class Bezier {
             }
             x += p.get(grade).x * Math.pow(t, grade);
             y += p.get(grade).y * Math.pow(t, grade);
-            b.add(new Point(x, y));
+            b.add(new Point((int)x, (int)y));
         }
         return b;
     }
+    
+    
 }

@@ -1,5 +1,6 @@
-package Plantilla.app.gui;
+package CurvaBezier.app.gui;
 
+import CurvaBezier.app.model.PanelListener;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -31,7 +32,7 @@ public class GraficaBezier extends JFrame {
     }
 
     private void listeners() {
-        // panel.addMouseListener();
+        panel.addMouseListener(new PanelListener());
     }
 
     public static void main(String[] a) {
